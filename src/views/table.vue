@@ -5,7 +5,11 @@
 </template>
 
 <script setup lang="ts">
+import useTable from '@/hooks/useTable'
 
+const { loading, tableData } = useTable(
+  (pagination) => 
+)
 </script>
 
 <style lang="scss" scoped>
