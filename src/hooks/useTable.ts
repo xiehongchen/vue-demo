@@ -2,7 +2,7 @@ import usePagination from './usePagination'
 import { ref } from 'vue'
 
 interface Options<T> {
-  formResult: (data: T[]) => any
+  formatResult: (data: T[]) => any
   onSuccess?: () => void
   immediate?: boolean
   rowkey?: keyof T
@@ -21,8 +21,8 @@ type PaginationParams = {
  */
 type Api<T> = (params: PaginationParams) => Promise<ApiRes<PageRes<T[]>>>
 
-export default function useTable<T>(api: Api<T>, options?: Options<T>) {
-  const { formResult, onSuccess, immediate, rowkey } = options || {}
+export default function <T>(api: Api<T>, options?: Options<T>) {
+  const { formatResult, onSuccess, immediate, rowkey } = options || {}
   const { pagination, setTotal } = usePagination(() => getTableData())
   const loading = ref(false)
   const tableData = ref<T[]>([])
@@ -35,7 +35,8 @@ export default function useTable<T>(api: Api<T>, options?: Options<T>) {
         page: pagination.current,
         size: pagination.pageSize
       })
-      tableData.value = formResult ? formResult(res.data.records) : res.data.records
+      console.log('res', res)
+      tableData.value = formatResult ? formatResult(res.data.records) : res.data.records
       setTotal(res.data.total)
       onSuccess && onSuccess()
     } finally {

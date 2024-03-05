@@ -76,29 +76,29 @@ class AxiosTest {
   /**
    * 统一请求方法
    */
-  request<T = any>(config: AxiosRequestConfig): Promise<T> {
+  request<T = any>(config: AxiosRequestConfig): Promise<ApiRes<T>> {
     return new Promise((resolve, reject) => {
-      this.axiosInstance.request<any, AxiosResponse<Respones>>(config).then((res) => {
-        return resolve(res as unknown as Promise<T>)
-      }).catch((err) => {
+      this.axiosInstance.request<T>(config).then((res: AxiosResponse) => {
+        return resolve(res.data)
+      }).catch((err: { message: string }) => {
         return reject(err)
       })
     })
   }
 
-  get<T = any>(config: AxiosRequestConfig): Promise<T> {
+  get<T = any>(config: AxiosRequestConfig): Promise<ApiRes<T>> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T = any>(config: AxiosRequestConfig): Promise<T> {
+  post<T = any>(config: AxiosRequestConfig): Promise<ApiRes<T>> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  put<T = any>(config: AxiosRequestConfig): Promise<T> {
+  put<T = any>(config: AxiosRequestConfig): Promise<ApiRes<T>> {
     return this.request<T>({ ...config, method: 'PUT' })
   }
 
-  delete<T = any>(config: AxiosRequestConfig): Promise<T> {
+  delete<T = any>(config: AxiosRequestConfig): Promise<ApiRes<T>> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 }

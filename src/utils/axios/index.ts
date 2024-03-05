@@ -35,8 +35,8 @@ const _RequstInterceptors: RequstInterceptors = {
 }
 
 const useRequest = new AxiosTest({
-  directlyGetData: true,
-  baseURL: 'http://localhost:8080',
+  directlyGetData: false,
+  baseURL: '/api',
   timeout: 3000,
   interceptors: _RequstInterceptors,
   abortRepetitiveRequest: true,
