@@ -7,10 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BasicTable: typeof import('./src/components/BasicTable.vue')['default']
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Table: typeof import('./src/components/Table.vue')['default']
+    TableEncapsulation: typeof import('./src/components/TableEncapsulation.vue')['default']
+    TablePackage: typeof import('./src/components/TablePackage.vue')['default']
   }
 }
