@@ -22,7 +22,7 @@ type PaginationParams = {
 type Api<T> = (params: PaginationParams) => Promise<ApiRes<PageRes<T[]>>>
 
 export default function <T>(api: Api<T>, options?: Options<T>) {
-  const { formatResult, onSuccess, immediate, rowkey } = options || {}
+  const { formatResult, onSuccess, immediate } = options || {}
   const { pagination, setTotal } = usePagination(() => getTableData())
   const loading = ref(false)
   const tableData = ref<T[]>([])

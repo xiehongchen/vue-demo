@@ -8,3 +8,5 @@
  * 认真学习每一天
  */
 /// <reference types="vite/client" />
+
+declare module 'mockjs'

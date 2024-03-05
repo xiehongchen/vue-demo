@@ -25,6 +25,6 @@ export const resultError = (data: unknown, message: string, code = 500) => {
     code,
     data,
     message,
-    success: false_
+    success: false
   })
 }

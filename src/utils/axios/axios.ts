@@ -1,4 +1,4 @@
-import type { AxiosOptions, RequstInterceptors, Respones } from './axiosType'
+import type { AxiosOptions, RequstInterceptors } from './axiosType'
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import AxiosCanceler from './axiosCancel'
