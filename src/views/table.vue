@@ -1,6 +1,19 @@
 <template>
   <div>
     <h1>表格封装</h1>
+    <el-table :loading="loading" :data="tableData" style="width: 100%">
+      <el-table-column prop="date" label="Date" width="180" />
+      <el-table-column prop="name" label="Name" width="180" />
+      <el-table-column prop="address" label="Address" />
+    </el-table>
+    <el-pagination 
+      background 
+      layout="prev, pager, next" 
+      :total="pagination.total" 
+      v-model:page-size="pagination.pageSize"
+      v-model:current-page="pagination.current"
+      @current-change="changeCurrent"
+      @size-change="changePageSize" />
   </div>
 </template>
 
@@ -13,7 +26,7 @@ const form = reactive({
   name: '',
   status: ''
 })
-const { loading, tableData, getTableData, pagination } = useTable(
+const { loading, tableData, getTableData, pagination, changeCurrent, changePageSize } = useTable(
   (pagin) => getPersonList({ ...form, current: pagin.page, pageSize: pagin.size }),
   { immediate: true, formatResult: (data: any[]) => data.map((i) => ({ ...i, isEdit: false })) }
 )
