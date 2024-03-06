@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>表格封装</h1>
-    <el-table :loading="loading" :data="tableData" style="width: 100%">
+    <el-table v-loading="loading" :data="tableData" style="width: 100%" border>
       <el-table-column prop="date" label="Date" width="180" />
       <el-table-column prop="name" label="Name" width="180" />
       <el-table-column prop="address" label="Address" />
@@ -34,6 +34,10 @@ console.log('useTable>>>>>', loading)
 console.log('tableData>>>>>', tableData)
 console.log('getTableData>>>>', getTableData)
 console.log('pagination>>>>', pagination)
+
+watch(loading, (newVal) => {
+  console.log('loading>>>>', newVal)
+})
 
 </script>
 
