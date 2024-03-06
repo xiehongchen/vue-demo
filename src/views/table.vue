@@ -6,7 +6,7 @@
       <el-table-column prop="name" label="Name" width="180" />
       <el-table-column prop="address" label="Address" />
     </el-table>
-    <el-pagination 
+    <el-pagination
       background 
       layout="prev, pager, next" 
       :total="pagination.total" 

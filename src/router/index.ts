@@ -15,6 +15,10 @@ const routes: RouteRecordRaw[] = [
   component: () => import('@/views/table.vue')
  },
  {
+  path: '/table2',
+  component: () => import('@/views/table2.vue')
+ },
+ {
   path: '/axios',
   component: () => import('@/views/axios.vue')
  }

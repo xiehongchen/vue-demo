@@ -3,7 +3,8 @@
 </script>
 
 <template>
-  <router-link to="/table">表格</router-link>
+  <router-link to="/table">useTable-表格</router-link>
+  <router-link to="/table2">封装-表格</router-link>
   <router-link to="/axios">axios封装</router-link>
   <router-view></router-view>
 </template>
