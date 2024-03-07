@@ -1,6 +1,6 @@
 <template>
   <h1>表单二次封装</h1>
-  <basic-form ref="basicFormRef" :options="formData" :props="formData.props" :events="formData.events">
+  <basic-form ref="basicFormRef" :options="options" :props="options.props" :events="options.events">
     <!-- 使用插槽覆盖掉组件里的，record就是传参 -->
     <template #name="{record}">
       {{ record }}
@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 const basicFormRef = ref()
-const data = computed(() => formData.data)
+const data = computed(() => options.data)
 const save = () => {
   console.log('basicFormRef', basicFormRef.value.formRef)
   basicFormRef.value.formRef.validate((valid: boolean) => {
@@ -22,7 +22,7 @@ const save = () => {
     }
   })
 }
-const formData = reactive({
+const options = reactive({
   // el-form原生属性
   props: {
 
