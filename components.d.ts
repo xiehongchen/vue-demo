@@ -7,25 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ActionButton: typeof import('./src/components/Table/ActionButton.vue')['default']
-    BasicTable: typeof import('./src/components/BasicTable.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    BasicForm: typeof import('./src/components/BasicForm/index.vue')['default']
+    BasicImage: typeof import('./src/components/BasicImage/index.vue')['default']
+    Components: typeof import('./src/components/index.vue')['default']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElOption: typeof import('element-plus/es')['ElOption']
-    ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElSelect: typeof import('element-plus/es')['ElSelect']
-    ElTable: typeof import('element-plus/es')['ElTable']
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
-    ElTablePlus: typeof import('element-plus/es')['ElTablePlus']
-    ElTag: typeof import('element-plus/es')['ElTag']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Table: typeof import('./src/components/Table/index.vue')['default']
-  }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
