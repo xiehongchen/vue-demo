@@ -25,6 +25,10 @@ const routes: RouteRecordRaw[] = [
  {
   path: '/form',
   component: () => import('@/views/form.vue')
+ },
+ {
+  path: '/page',
+  component: () => import('@/views/pagination.vue')
  }
 ]
 
