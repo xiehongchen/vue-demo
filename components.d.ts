@@ -10,6 +10,7 @@ declare module 'vue' {
     ActionButton: typeof import('./src/components/BasicTable/ActionButton.vue')['default']
     BasicForm: typeof import('./src/components/BasicForm/index.vue')['default']
     BasicImage: typeof import('./src/components/BasicImage/index.vue')['default']
+    BasicPagination: typeof import('./src/components/BasicPagination/index.vue')['default']
     BasicTable: typeof import('./src/components/BasicTable/index.vue')['default']
     Components: typeof import('./src/components/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']

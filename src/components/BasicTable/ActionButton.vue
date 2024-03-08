@@ -75,7 +75,7 @@ const confirmProps = computed(() => {
 
 const emits = defineEmits(["click"]);
 
-const handleConfirm = (button: { click: any; }, scope: any) => {
+const handleConfirm = (button: { click: any; }, _scope: any) => {
   if (isFunction(button.click)) {
       emits("click");
   }

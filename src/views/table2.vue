@@ -27,9 +27,16 @@ const { loading, tableData, pagination, changeCurrent, changePageSize } = useTab
   { immediate: true, formatResult: (data: any[]) => data.map((i) => ({ ...i, isEdit: false })) }
 )
 
+const formData = (data: any) => {
+  return data.slice(0, 4)
+}
+
 // 表格配置
 const options = reactive({
-  props: {},
+  props: {
+    border: true,
+    stripe: true
+  },
   events: {},
   // 表格数据
   data: tableData,
@@ -42,6 +49,11 @@ const options = reactive({
       click: (row: any) => {
         console.log('row', row)
       }
+    },
+    {
+      prop: 'startTime',
+      label: '开始时间',
+      formatter: (row: any) => formData(row.startTime),
     },
     { prop: 'date', label: '日期' },
     { prop: 'address', label: '地址' },
@@ -61,11 +73,13 @@ const options = reactive({
       ]
     }
   ]
-
 })
 
 </script>
 
 <style lang="scss" scoped>
-
+.el-pagination {
+  display: flex;
+  justify-content: flex-end;
+}
 </style>
