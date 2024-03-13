@@ -14,12 +14,41 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+import fs from 'node:fs'
+
+// 限制图片大小，保证开发环境和生产环境的图片地址一致
+const myPlugin = (limit = 4096) => { 
+  return {
+    name: 'my-plugin',
+    async transform(id: any) {
+      if (process.env.NODE_ENV !== 'development') {
+        return 
+      }
+      if (!id.endsWith('.png') && !id.endsWith('.jpg')) {
+        return
+      }
+      const stat = await fs.promises.stat(id)
+      if (stat.size > limit) { 
+        return
+      }
+      const buffer = await fs.promises.readFile(id)
+      const base64 = buffer.toString('base64')
+      const dataurl = `data:image/${id.endsWith('.png') ? 'png' : 'jpg'};base64,${base64}`
+      return {
+        code: `export default ${JSON.stringify(dataurl)}`,
+        map: null
+      }
+    }
+  }
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [
       vue(),
+      myPlugin(),
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: 'src/auto-imports.d.ts',
@@ -63,5 +92,23 @@ export default defineConfig(({ command, mode }) => {
         }
       }
     },
+    build: {
+      // 生成环境是否生成 sourceMap 文件
+      sourcemap: true,
+      // 打包后的文件目录
+      outDir: 'dist',
+      // 是否开启压缩
+      minify: 'terser',
+      // 是否开启代码分割
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          }
+        }
+      }
+    }
   }
 })

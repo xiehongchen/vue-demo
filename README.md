@@ -15,3 +15,6 @@ demo: `views/form`
 ## axios封装
 位置: `utils/axios`
 demo: `views/axios`
+
+## vite配置
+位置: `vite.config.ts`
