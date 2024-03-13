@@ -9,28 +9,19 @@
  */
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 
-const routes: RouteRecordRaw[] = [
- {
-  path: '/table',
-  component: () => import('@/views/table.vue')
- },
- {
-  path: '/table2',
-  component: () => import('@/views/table2.vue')
- },
- {
-  path: '/axios',
-  component: () => import('@/views/axios.vue')
- },
- {
-  path: '/form',
-  component: () => import('@/views/form.vue')
- },
- {
-  path: '/page',
-  component: () => import('@/views/pagination.vue')
- }
-]
+const routes: RouteRecordRaw[] = []
+
+const views = import.meta.glob('./../views/*.vue')
+for (const path in views) {
+  const match = path.match(/(\/[^/]+)\.vue$/) as string[]
+  routes.push({
+    path: match[1],
+    // /* @vite-ignore */抑制警告
+    component: () => import(/* @vite-ignore */`${path}`)
+  })
+}
+
+console.log('routes', routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
