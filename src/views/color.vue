@@ -1,6 +1,7 @@
 <template>
   <div class="box">
-    <el-button class=""></el-button>
+    <el-button class="color">颜色</el-button>
+    <el-button @click="">切换</el-button>
   </div>
 </template>
 
@@ -10,6 +11,9 @@
 
 <style lang="scss" scoped>
 .box {
-  --fontColor: '#fff'
+  --fontColor: #f00;
+  .color {
+    background: var(--fontColor);
+  }
 }
 </style>
