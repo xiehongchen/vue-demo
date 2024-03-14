@@ -97,7 +97,7 @@ export default defineConfig(({ command, mode }) => {
       sourcemap: true,
       // 打包后的文件目录
       outDir: 'dist',
-      // 是否开启压缩
+      // 是否开启压缩 
       minify: 'terser',
       // 是否开启代码分割
       rollupOptions: {

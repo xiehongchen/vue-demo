@@ -10,6 +10,7 @@
     <router-link to="/form">表单-封装</router-link>
     <router-link to="/page">分页-封装</router-link>
     <router-link to="/color">前端换肤</router-link>
+    <router-link to="/router">简易router</router-link>
     <router-view></router-view>
   </div>
 </template>
