@@ -1,8 +1,14 @@
 <template>
-  <div></div>
+  <div>
+    <test></test>
+  </div>
 </template>
 
 <script setup lang='ts'>
+console.log('父组件-----setup')
+onMounted(() => {
+  console.log('父组件----mounted')
+})
 // import usePagination from '@/hooks/usePagination'
 // import { getPersonList } from '@/apis'
 

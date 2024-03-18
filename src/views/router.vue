@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Table from './table.vue'
 import Form from './form.vue'
 
@@ -21,7 +21,7 @@ window.addEventListener('hashchange', () => {
 })
 
 const currentView = computed(() => {
-  return routes[currentPath.value.slice(1)] || Table
+  return (routes as Record<string, any>)[currentPath.value.slice(1)] || Table
 })
 </script>
 

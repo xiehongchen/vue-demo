@@ -13,7 +13,9 @@ import { viteMockServe } from 'vite-plugin-mock'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-
+import { visualizer } from 'rollup-plugin-visualizer'
+import viteImagemin from 'vite-plugin-imagemin'
+import VueLazyload from 'vite-plugin-vue-lazyload'  
 import fs from 'node:fs'
 
 // 限制图片大小，保证开发环境和生产环境的图片地址一致
@@ -49,6 +51,43 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       vue(),
       myPlugin(),
+      visualizer({
+        open: true
+      }),
+      // 图片压缩
+      viteImagemin({
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false
+        },
+        optipng: {
+          optimizationLevel: 7
+        },
+        mozjpeg: {
+          quality: 20
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox'
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false
+            }
+          ]
+        }
+      }),
+      // 图片懒加载
+      VueLazyload({  
+        // 配置选项  
+        loading: 'loading.gif', // 默认加载中的占位图  
+        error: 'error.gif', // 默认加载错误的占位图  
+      }), 
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: 'src/auto-imports.d.ts',
@@ -108,6 +147,12 @@ export default defineConfig(({ command, mode }) => {
             }
           }
         }
+      },
+      terserOptions: {
+        compress: {  
+          drop_console: true, // 删除所有 console
+          drop_debugger: true,// 删除 debugger
+        }  
       }
     }
   }
