@@ -14,7 +14,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { visualizer } from 'rollup-plugin-visualizer'
-import viteImagemin from 'vite-plugin-imagemin'
+// import viteImagemin from 'vite-plugin-imagemin'
 import fs from 'node:fs'
 
 // 限制图片大小，保证开发环境和生产环境的图片地址一致
@@ -54,33 +54,33 @@ export default defineConfig(({ command, mode }) => {
         open: true
       }),
       // 图片压缩
-      viteImagemin({
-        gifsicle: {
-          optimizationLevel: 7,
-          interlaced: false
-        },
-        optipng: {
-          optimizationLevel: 7
-        },
-        mozjpeg: {
-          quality: 20
-        },
-        pngquant: {
-          quality: [0.8, 0.9],
-          speed: 4
-        },
-        svgo: {
-          plugins: [
-            {
-              name: 'removeViewBox'
-            },
-            {
-              name: 'removeEmptyAttrs',
-              active: false
-            }
-          ]
-        }
-      }),
+      // viteImagemin({
+      //   gifsicle: {
+      //     optimizationLevel: 7,
+      //     interlaced: false
+      //   },
+      //   optipng: {
+      //     optimizationLevel: 7
+      //   },
+      //   mozjpeg: {
+      //     quality: 20
+      //   },
+      //   pngquant: {
+      //     quality: [0.8, 0.9],
+      //     speed: 4
+      //   },
+      //   svgo: {
+      //     plugins: [
+      //       {
+      //         name: 'removeViewBox'
+      //       },
+      //       {
+      //         name: 'removeEmptyAttrs',
+      //         active: false
+      //       }
+      //     ]
+      //   }
+      // }),
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: 'src/auto-imports.d.ts',
