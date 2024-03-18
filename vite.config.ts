@@ -15,7 +15,6 @@ import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { visualizer } from 'rollup-plugin-visualizer'
 import viteImagemin from 'vite-plugin-imagemin'
-import VueLazyload from 'vite-plugin-vue-lazyload'  
 import fs from 'node:fs'
 
 // 限制图片大小，保证开发环境和生产环境的图片地址一致
@@ -82,12 +81,6 @@ export default defineConfig(({ command, mode }) => {
           ]
         }
       }),
-      // 图片懒加载
-      VueLazyload({  
-        // 配置选项  
-        loading: 'loading.gif', // 默认加载中的占位图  
-        error: 'error.gif', // 默认加载错误的占位图  
-      }), 
       AutoImport({
         imports: ['vue', 'vue-router'],
         dts: 'src/auto-imports.d.ts',
