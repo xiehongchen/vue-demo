@@ -1,2 +1,0 @@
-import{i as s,c as a,a as o,w as t,F as e,k as r,l,o as c,b as d,j as n,t as i}from"./vendor-bZbVrpZz.js";import{_ as u}from"./index-C-087UxZ.js";const _={class:"box"},f=u(s({__name:"color",setup(s){const u=[1,2,3,4,6],f=()=>{u[2]=8};return(s,m)=>{const p=l;return c(),a("div",_,[o(p,{class:"color"},{default:t((()=>[d("颜色")])),_:1}),o(p,{onClick:f},{default:t((()=>[d("切换")])),_:1}),(c(),a(e,null,r(u,(s=>n("div",{key:s},i(s),1))),64))])}}}),[["__scopeId","data-v-d3423689"]]);export{f as default};
-//# sourceMappingURL=color-DcA13C7e.js.map
