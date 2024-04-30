@@ -1,0 +1,1 @@
+{"version":3,"file":"index-C7wEPz-O.js","sources":["../../src/views/home/index.vue"],"sourcesContent":["<template>\n  <div>主页</div>\n</template>\n\n<script setup lang=\"ts\">\n\n</script>\n\n<style lang=\"scss\" scoped>\n\n</style>"],"names":["_ctx","_cache"],"mappings":"2GACE,SAAAA,EAAAC"}
