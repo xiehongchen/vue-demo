@@ -12,12 +12,12 @@
 
 <script setup lang="ts">
 import { menuRoutes } from '@/router/routes'
-import { navigate } from '@/utils/navigate'
+// import { navigate } from '@/utils/navigate'
 console.log('menuRoutes', menuRoutes)
 
 
 const selectedKeys = ref<string[]>(['/home']);
-const goRouter = (value) => {
+const goRouter = (value: any) => {
   console.log('value', value)
 }
 </script>
