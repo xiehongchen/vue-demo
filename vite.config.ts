@@ -115,6 +115,14 @@ export default defineConfig(({ command, mode }) => {
         '@': '/src',
       },
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          javascriptEnabled: true,
+          additionalData: '@import "./src/styles/variable.scss";',
+        },
+      },
+    },
     server: {
       proxy: {
         '/api': {

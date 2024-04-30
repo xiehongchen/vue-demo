@@ -7,21 +7,9 @@
  * @Description: 
  * 认真学习每一天
  */
-import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { routes } from './routes'
 
-const routes: RouteRecordRaw[] = []
-
-const views = import.meta.glob('./../views/*.vue')
-for (const path in views) {
-  const match = path.match(/(\/[^/]+)\.vue$/) as string[]
-  routes.push({
-    path: match[1],
-    // /* @vite-ignore */抑制警告
-    component: () => import(/* @vite-ignore */`${path}`)
-  })
-}
-
-console.log('routes', routes)
 
 const router = createRouter({
   history: createWebHashHistory(),
