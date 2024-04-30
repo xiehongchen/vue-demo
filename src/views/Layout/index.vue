@@ -8,6 +8,8 @@ const headerStyle: CSSProperties = {
   paddingInline: 50,
   lineHeight: '64px',
   backgroundColor: '#7dbcea',
+  display: 'flex',
+  justifyContent: 'center'
 };
 
 const contentStyle: CSSProperties = {

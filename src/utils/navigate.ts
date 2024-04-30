@@ -1,6 +1,5 @@
-import { useRouter } from 'vue-router'
-const router = useRouter()
-
-export const navigate = (value: any) => {
-  router.push(value)
+import router from '@/router'
+export const navigate = (path: any) => {
+  console.log('router', router)
+  router.push({path})
 }
