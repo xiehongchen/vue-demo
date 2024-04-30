@@ -1,7 +1,7 @@
 <template>
   <div class="menu">
     <div v-for="item in menuRoutes" :key="item.path" @click="goRouter(item)" 
-      class="item" :class="item.path === route.path ? 'active' : ''">
+      class="item flex-center" :class="item.path === route.path ? 'active' : ''">
       {{ item.meta?.title }}
     </div>
   </div>

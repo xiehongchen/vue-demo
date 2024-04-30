@@ -22,7 +22,7 @@ import LayoutSider from './LayoutSider.vue';
 .header {
   text-align: center;
   color: #fff;
-  height: 64px;
+  height: $base-menu-height;
   background-color: #7dbcea;
   display: flex;
   justify-content: center;
@@ -33,8 +33,9 @@ import LayoutSider from './LayoutSider.vue';
   background-color: #3ba0e9;
 }
 .content {
+  padding: 20px;
   text-align: center;
-  height: calc(100vh - 46px);
+  height: calc(100vh - $base-menu-height);
   color: #fff;
   background-color: #108ee9;
 }
