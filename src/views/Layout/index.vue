@@ -1,42 +1,17 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue';
 import LayoutHeader from './LayoutHeader.vue'
-const headerStyle: CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 64,
-  paddingInline: 50,
-  lineHeight: '64px',
-  backgroundColor: '#7dbcea',
-  display: 'flex',
-  justifyContent: 'center'
-};
-
-const contentStyle: CSSProperties = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
-};
-
-const siderStyle: CSSProperties = {
-  textAlign: 'center',
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#3ba0e9',
-};
+import LayoutSider from './LayoutSider.vue';
 
 </script>
 
 <template>
   <a-layout>
-    <a-layout-header :style="headerStyle">
+    <a-layout-header class="header">
       <LayoutHeader />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider :style="siderStyle">Sider</a-layout-sider>
-      <a-layout-content :style="contentStyle">
+      <a-layout-sider class="sider"><LayoutSider /></a-layout-sider>
+      <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
     </a-layout>
@@ -44,5 +19,23 @@ const siderStyle: CSSProperties = {
 </template>
 
 <style scoped lang="scss">
-
+.header {
+  text-align: center;
+  color: #fff;
+  height: 64px;
+  background-color: #7dbcea;
+  display: flex;
+  justify-content: center;
+}
+.sider {
+  text-align: center;
+  color: #fff;
+  background-color: #3ba0e9;
+}
+.content {
+  text-align: center;
+  height: calc(100vh - 46px);
+  color: #fff;
+  background-color: #108ee9;
+}
 </style>
