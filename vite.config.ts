@@ -42,7 +42,7 @@ const myPlugin = (limit = 4096) => {
     }
   }
 }
-const outputPath = process.env.NODE_ENV === 'production' ? '/ASGL' : ''
+const outputPath = process.env.NODE_ENV === 'production' ? '/vue-demo' : ''
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
 
