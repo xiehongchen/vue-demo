@@ -30,9 +30,14 @@ watchEffect(() => {
     //   })
     //   .catch(() => {});
     const mrk = new Request("../markdown/" + currentName.value + ".md");
+    console.log('mrk', mrk)
     fetch(mrk)
-      .then((response) => response.text())
+      .then((response) => {
+        console.log('response', response)
+        return response.text();
+      })
       .then((text) => {
+        console.log('text', text)
         state.text = text;
       });
   }
