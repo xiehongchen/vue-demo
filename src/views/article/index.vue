@@ -24,11 +24,17 @@ const state = reactive({
 });
 watchEffect(() => {
   if (route.path.startsWith("/doc/")) {
-    import(/* @vite-ignore */ "../markdown/" + currentName.value + ".md?raw")
-      .then((e) => {
-        state.text = e.default;
-      })
-      .catch(() => {});
+    // import(/* @vite-ignore */ "../markdown/" + currentName.value + ".md?raw")
+    //   .then((e) => {
+    //     state.text = e.default;
+    //   })
+    //   .catch(() => {});
+    const mrk = new Request("../markdown/" + currentName.value + ".md");
+    fetch(mrk)
+      .then((response) => response.text())
+      .then((text) => {
+        state.text = text;
+      });
   }
 });
 
