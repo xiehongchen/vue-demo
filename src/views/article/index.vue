@@ -29,7 +29,8 @@ watchEffect(() => {
     //     state.text = e.default;
     //   })
     //   .catch(() => {});
-    const mrk = new Request("../markdown/" + currentName.value + ".md");
+    
+    const mrk = new Request("markdown/" + currentName.value + ".md");
     console.log('mrk', mrk)
     fetch(mrk)
       .then((response) => {
