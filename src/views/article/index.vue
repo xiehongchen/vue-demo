@@ -24,7 +24,7 @@ const state = reactive({
 });
 watchEffect(() => {
   if (route.path.startsWith("/doc/")) {
-    import(/* @vite-ignore */ "./markdown/" + currentName.value + ".md?raw")
+    import(/* @vite-ignore */ "markdown/" + currentName.value + ".md?raw")
       .then((e) => {
         state.text = e.default;
       })
