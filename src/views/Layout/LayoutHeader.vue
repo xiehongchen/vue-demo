@@ -12,7 +12,7 @@ import { menuRoutes } from '@/router/routes'
 import { navigate } from '@/utils/navigate'
 import { useRoute } from 'vue-router'
 const route = useRoute()
-console.log('router', route)
+console.log('route', route)
 const goRouter = (value: any) => {
   console.log('value', value)
   navigate(value.path)

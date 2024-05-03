@@ -15,6 +15,7 @@ import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { visualizer } from 'rollup-plugin-visualizer'
 // import viteImagemin from 'vite-plugin-imagemin'
+import Markdown from 'vite-plugin-md'
 import fs from 'node:fs'
 
 // 限制图片大小，保证开发环境和生产环境的图片地址一致
@@ -49,11 +50,14 @@ export default defineConfig(({ command, mode }) => {
   return {
     base: outputPath,
     plugins: [
-      vue(),
+      vue({
+        include: [/\.vue$/, /\.md$/]
+      }),
       myPlugin(),
       visualizer({
         open: true
       }),
+      Markdown(),
       // 图片压缩
       // viteImagemin({
       //   gifsicle: {

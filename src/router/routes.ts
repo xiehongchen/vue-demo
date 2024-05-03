@@ -36,5 +36,10 @@ export const routes: RouteRecordRaw[] = [
     children: [
       ...menuRoutes,
     ],
+  },
+  {
+    path: '/doc/:name',
+    name: 'doc',
+    component: () => import('@/views/article/index.vue'),
   }
 ]
