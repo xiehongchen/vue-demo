@@ -53,8 +53,12 @@ watchEffect(() => {
     //   .catch((error) => {
     //     console.log('error', error)
     //   });
-
-    const mrk = new Request("/markdown/" + currentName.value + ".md");
+    // 前缀
+    let prefix = "/markdown/";
+    if (process.env.NODE_ENV === 'production') {
+      prefix = "/vue-demo" + prefix;
+    }
+    const mrk = new Request(prefix + currentName.value + ".md");
     fetch(mrk)
       .then((response) => {
         return response.text();
