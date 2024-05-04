@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import LayoutHeader from './LayoutHeader.vue'
 import LayoutSider from './LayoutSider.vue';
-
+import { useSetting } from '@/store/setting'
+const setting = useSetting()
+const collapsed = computed(() => setting.collapsed)
 </script>
 
 <template>
-  <a-layout>
+  <a-layout class="layout">
+    <div class="bg-image">
+    </div>
     <a-layout-header class="header">
       <LayoutHeader />
     </a-layout-header>
     <a-layout>
-      <a-layout-sider class="sider"><LayoutSider /></a-layout-sider>
+      <a-layout-sider width="300" v-model:collapsed="collapsed" :trigger="null" collapsible :collapsedWidth="0" class="sider flex-center">
+        <LayoutSider />
+      </a-layout-sider>
       <a-layout-content class="content">
         <router-view></router-view>
       </a-layout-content>
@@ -19,24 +25,39 @@ import LayoutSider from './LayoutSider.vue';
 </template>
 
 <style scoped lang="scss">
-.header {
-  text-align: center;
-  color: #fff;
-  height: $base-menu-height;
-  background-color: #7dbcea;
-  display: flex;
-  justify-content: center;
+.layout {
+  position: relative;
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background: url('https://xiehongchen.github.io/img/preview.jpg');
+    background: url('preview.jpg');
+    background-size: cover;
+    background-position: center;
+  }
 }
+
+.header {
+  height: $base-menu-height;
+  background-color: transparent;
+  position: relative;
+
+}
+
 .sider {
   text-align: center;
-  color: #fff;
-  background-color: #3ba0e9;
+  background-color: transparent;
+  width: 500px;
 }
+
 .content {
   padding: 20px;
-  text-align: center;
   height: calc(100vh - $base-menu-height);
-  color: #fff;
-  background-color: #108ee9;
+  background-color: transparent;
+  position: relative;
 }
 </style>

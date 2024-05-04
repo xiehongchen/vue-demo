@@ -6,6 +6,7 @@ import pinia from './store'
 import '@/styles/index.scss'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // import highlight from './directives/highlight';
+import vSilderin from '@/directives/vSilderin';
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
@@ -14,4 +15,5 @@ app.use(Antd)
 app.use(pinia)
 app.use(router)
 // app.directive('highlight', highlight)
+app.directive('silderIn', vSilderin)
 app.mount('#app')

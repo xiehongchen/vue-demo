@@ -1,3 +1,13 @@
+---
+title: a
+date: 2024-02-20 21:42:38
+tags: [前端, 后端]
+summary: 前端学习
+category: [技术, 风险]
+update: 2024-02-20 21:42:38
+image: https://xiehongchen.github.io/img/preview.jpg
+---
+
 学习资源
 
 [尚硅谷Vue2+3](https://www.bilibili.com/video/BV1Zy4y1K7SH/)

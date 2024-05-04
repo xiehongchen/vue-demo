@@ -26,6 +26,32 @@ export const menuRoutes: RouteRecordRaw[] = [
       title: '封装组件'
     }
   },
+  {
+    path: '/category',
+    name: 'category',
+    component: () => import('@/views/category/index.vue'),
+    meta: {
+      title: '分类'
+    }
+  },
+  {
+    path: '/tags',
+    name: 'tags',
+    component: () => import('@/views/tags/index.vue'),
+    meta: {
+      title: '标签'
+    }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/about/index.vue'),
+  },
+  {
+    path: '/doc/:name',
+    name: 'doc',
+    component: () => import('@/views/article/index.vue'),
+  }
 ]
 
 export const routes: RouteRecordRaw[] = [
@@ -37,9 +63,4 @@ export const routes: RouteRecordRaw[] = [
       ...menuRoutes,
     ],
   },
-  {
-    path: '/doc/:name',
-    name: 'doc',
-    component: () => import('@/views/article/index.vue'),
-  }
 ]
