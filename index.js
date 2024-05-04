@@ -9,7 +9,8 @@ function readDirectory(directoryPath, callback) {
       return;
     }
 
-    const fileContents = []; // 用于存储文件内容的数组
+    let fileContents = ''; // 用于存储文件内容
+    let fileInfo = []; // 用于存储文件信息的数组
 
     // 遍历目录下的所有文件和子目录
     files.forEach(file => {
@@ -19,9 +20,9 @@ function readDirectory(directoryPath, callback) {
           callback(err);
           return;
         }
-
         // 如果是文件，则读取文件内容
         if (stats.isFile() && path.extname(filePath) === '.md') {
+          const fileName = path.basename(filePath, path.extname(filePath)) + '.md'
           fs.readFile(filePath, 'utf8', (err, content) => {
             if (err) {
               callback(err);
@@ -37,11 +38,10 @@ function readDirectory(directoryPath, callback) {
             let category = extractCategory(content);
             category = category.substring(1, category.length - 1).split(',').map(item => item.trim())
             const image = extractImage(content);
-
-            console.log('tags', tags)
-
+            const str = extractContent(content);
+            fileContents = str
             // 将提取的数据添加到数组中
-            fileContents.push({
+            fileInfo.push({
               title,
               date,
               updateDate,
@@ -51,9 +51,10 @@ function readDirectory(directoryPath, callback) {
               image,
             });
             // 检查是否所有文件都已读取完成
-            if (fileContents.length === files.length) {
+            if (fileInfo.length === files.length) {
               // 所有文件已读取完成，将文件内容写入到 JSON 文件中
-              writeToFile(fileContents, callback);
+              writeToFile(fileInfo, 'src/views/home', 'data.json', callback);
+              // writeToFile(fileContents, 'public/test', fileName, callback);
             }
           });
         }
@@ -108,13 +109,17 @@ function extractImage(content) {
   return imageMatch ? imageMatch[1] : null;
 }
 
+function extractContent(content) {
+  return content.replace(/---[\s\S]*?---/, '')
+}
+
 // 将文件内容写入到 JSON 文件中
-function writeToFile(fileContents, callback) {
-  const jsonContent = JSON.stringify(fileContents, null, 2); // 将数组内容转换为 JSON 格式
-  const outputDir = 'src/views/home'; // 输出目录路径
-  const outputPath = path.join(outputDir, 'data.json'); // 输出文件路径
+function writeToFile(file, pathName, fileName, callback) {
+  const jsonContent = JSON.stringify(file, null, 2); // 将数组内容转换为 JSON 格式
+  const outputPath = path.join(pathName, fileName); // 输出文件路径
   // 确保输出目录存在
-  fs.mkdirSync(outputDir, { recursive: true });
+  fs.mkdirSync(pathName, { recursive: true });
+  
   fs.writeFile(outputPath, jsonContent, 'utf8', err => {
     if (err) {
       callback(err);

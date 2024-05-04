@@ -61,9 +61,11 @@ watchEffect(() => {
     const mrk = new Request(prefix + currentName.value + ".md");
     fetch(mrk)
       .then((response) => {
+        console.log('response', response)
         return response.text();
       })
       .then((text) => {
+        console.log('text', text)
         state.text = text.replace(/---[\s\S]*?---/, '')
       });
   }
