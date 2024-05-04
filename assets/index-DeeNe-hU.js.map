@@ -1,1 +1,0 @@
-{"version":3,"file":"index-DeeNe-hU.js","sources":["../../src/views/package/index.vue"],"sourcesContent":["<template>\n  <div>封装组件</div>\n</template>\n\n<script setup lang=\"ts\">\n\n</script>\n\n<style lang=\"scss\" scoped>\n\n</style>"],"names":["_ctx","_cache"],"mappings":"2GACE,SAAAA,EAAAC"}
