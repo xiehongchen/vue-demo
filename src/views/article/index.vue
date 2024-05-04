@@ -66,41 +66,20 @@ watchEffect(() => {
     //     console.log('error', error)
     //   });
     // 前缀
-    // const mrk = new Request(prefix + currentName.value + ".md");
-    // fetch(mrk)
-    //   .then((response) => {
-    //     console.log('response', response)
-    //     return response.text();
-    //   })
-    //   .then((text) => {
-    //     console.log('text', text)
-    //     state.text = text.replace(/---[\s\S]*?---/, '')
-    //   });
-
-    // 创建一个 XMLHttpRequest 对象
     let prefix = "/markdown/";
     if (process.env.NODE_ENV === "production") {
       prefix = "/vue-demo" + prefix;
     }
-    var xhr = new XMLHttpRequest();
-    // 定义要读取的 Markdown 文件的路径
-    var markdownFilePath = prefix + currentName.value + ".md"; // 更改为您要读取的文件名
-    // 发送 GET 请求以获取 Markdown 文件内容
-    xhr.open("GET", markdownFilePath, true);
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // 当请求成功完成时，您可以在此处处理返回的 Markdown 内容
-          state.text = xhr.responseText;
-          console.log("markdownContent", xhr);
-        } else {
-          // 如果请求失败，您可以在此处处理错误
-          console.error("Failed to load Markdown file.");
-        }
-      }
-    };
-    // 发送请求
-    xhr.send();
+    const mrk = new Request(prefix + currentName.value + ".js");
+    fetch(mrk)
+      .then((response) => {
+        console.log('response', response)
+        return response.text();
+      })
+      .then((text) => {
+        console.log('text', text)
+        state.text = text.replace(/---[\s\S]*?---/, '')
+      });
   }
 });
 

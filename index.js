@@ -22,7 +22,7 @@ function readDirectory(directoryPath, callback) {
         }
         // 如果是文件，则读取文件内容
         if (stats.isFile() && path.extname(filePath) === '.md') {
-          const fileName = path.basename(filePath, path.extname(filePath)) + '.md'
+          const fileName = path.basename(filePath, path.extname(filePath)) + '.js'
           fs.readFile(filePath, 'utf8', (err, content) => {
             if (err) {
               callback(err);
@@ -33,10 +33,10 @@ function readDirectory(directoryPath, callback) {
             const date = extractDate(content);
             const updateDate = extractUpdateDate(content);
             let tags = extractTags(content)
-            tags = tags.substring(1, tags.length - 1).split(',').map(item => item.trim())
+            tags = tags ? tags.substring(1, tags.length - 1).split(',').map(item => item.trim()) : []
             const summary = extractSummary(content);
             let category = extractCategory(content);
-            category = category.substring(1, category.length - 1).split(',').map(item => item.trim())
+            category = category ? category.substring(1, category.length - 1).split(',').map(item => item.trim()) : []
             const image = extractImage(content);
             const str = extractContent(content);
             fileContents = str
@@ -54,7 +54,7 @@ function readDirectory(directoryPath, callback) {
             if (fileInfo.length === files.length) {
               // 所有文件已读取完成，将文件内容写入到 JSON 文件中
               writeToFile(fileInfo, 'src/views/home', 'data.json', callback);
-              // writeToFile(fileContents, 'public/test', fileName, callback);
+              writeToFile(fileContents, 'public/markdown', fileName, callback);
             }
           });
         }
@@ -115,12 +115,16 @@ function extractContent(content) {
 
 // 将文件内容写入到 JSON 文件中
 function writeToFile(file, pathName, fileName, callback) {
-  const jsonContent = JSON.stringify(file, null, 2); // 将数组内容转换为 JSON 格式
+  console.log('file', file, pathName, fileName)
+  let content = file
+  if (path.extname(fileName) !== '.js') {
+    content = JSON.stringify(file, null, 2);
+  }
+   // 将数组内容转换为 JSON 格式
   const outputPath = path.join(pathName, fileName); // 输出文件路径
   // 确保输出目录存在
   fs.mkdirSync(pathName, { recursive: true });
-  
-  fs.writeFile(outputPath, jsonContent, 'utf8', err => {
+  fs.writeFile(outputPath, content, 'utf8', err => {
     if (err) {
       callback(err);
       return;
