@@ -1,12 +1,3 @@
-/*
- * @Author: xiehongchen 1754581057@qq.com
- * @Date: 2024-03-05 10:21:52
- * @LastEditors: xiehongchen 1754581057@qq.com
- * @LastEditTime: 2024-03-05 10:36:17
- * @FilePath: /vue-demo/vite.config.ts
- * @Description: 
- * 认真学习每一天
- */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { viteMockServe } from 'vite-plugin-mock'
