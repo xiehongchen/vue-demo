@@ -51,7 +51,7 @@ watchEffect(() => {
     //   })
     //   .catch(() => {});
 
-    const mrk = new Request("markdown/" + currentName.value + ".md");
+    const mrk = new Request("public/markdown/" + currentName.value + ".md");
     fetch(mrk)
       .then((response) => {
         return response.text();
