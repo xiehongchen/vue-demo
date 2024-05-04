@@ -45,20 +45,23 @@ const state = reactive({
 });
 watchEffect(() => {
   if (route.path.startsWith("/doc/")) {
-    // import(/* @vite-ignore */ "../markdown/" + currentName.value + ".md?raw")
-    //   .then((e) => {
-    //     state.text = e.default;
-    //   })
-    //   .catch(() => {});
-
-    const mrk = new Request("markdown/" + currentName.value + ".md");
-    fetch(mrk)
-      .then((response) => {
-        return response.text();
+    import(/* @vite-ignore */ "/markdown/" + currentName.value + ".md?raw")
+      .then((e) => {
+        console.log('e', e)
+        state.text = e.default;
       })
-      .then((text) => {
-        state.text = text.replace(/---[\s\S]*?---/, '')
+      .catch((error) => {
+        console.log('error', error)
       });
+
+    // const mrk = new Request("markdown/" + currentName.value + ".md");
+    // fetch(mrk)
+    //   .then((response) => {
+    //     return response.text();
+    //   })
+    //   .then((text) => {
+    //     state.text = text.replace(/---[\s\S]*?---/, '')
+    //   });
   }
 });
 
