@@ -123,7 +123,7 @@ const scrollElement = document.documentElement;
   position: fixed;
   background-color: #fff;
   right: 0;
-  top: 200px;
+  top: 100px;
   width: 200px;
   padding: 20px;
   height: 80%;

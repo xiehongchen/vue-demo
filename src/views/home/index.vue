@@ -62,6 +62,10 @@ import { CalendarFilled, TagFilled, AppstoreFilled, EditFilled } from '@ant-desi
 import { useRouter } from 'vue-router';
 import { useArticle } from '@/store/article'
 const article = useArticle()
+onMounted(() => {
+  console.log('data', data)
+  article.articleNum = data.length
+})
 const router = useRouter()
 const goDoc = (item: { title: string }) => {
   article.info = item

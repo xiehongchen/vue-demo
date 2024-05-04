@@ -7,19 +7,19 @@
     <div class="user-info flex flex-row-around">
       <div class="item">
         <div class="title">文章</div>
-        <div class="count">{{ articleNum }}</div>
+        <div class="count">{{ article.articleNum }}</div>
       </div>
       <div class="item">
         <div class="title">项目</div>
-        <div class="count">{{ projectNum }}</div>
+        <div class="count">{{ article.projectNum }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const articleNum = ref(10);
-const projectNum = ref(5);
+import { useArticle } from '@/store/article'
+const article = useArticle()
 </script>
 
 <style lang="scss" scoped>
