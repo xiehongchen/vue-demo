@@ -147,7 +147,7 @@ export default defineConfig(({ command, mode }) => {
       },
       terserOptions: {
         compress: {  
-          drop_console: true, // 删除所有 console
+          drop_console: false, // 删除所有 console
           drop_debugger: true,// 删除 debugger
         }  
       }

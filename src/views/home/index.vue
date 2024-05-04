@@ -58,7 +58,6 @@
 
 <script setup lang="ts">
 import data from './data.json'
-console.log('data', data)
 import { CalendarFilled, TagFilled, AppstoreFilled, EditFilled } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router';
 import { useArticle } from '@/store/article'
@@ -74,6 +73,28 @@ const goTag = (item: string) => {
 const goCate = (item: string) => {
   router.push({ name: 'result', params: { name: item } })
 }
+fetch("https://xiehongchen.github.io/vue-demo/a.md", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "sec-ch-ua": "\"Not_A Brand\";v=\"99\", \"Google Chrome\";v=\"109\", \"Chromium\";v=\"109\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin"
+  },
+  "referrer": "https://xiehongchen.github.io/vue-demo/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+}).then(res => {
+    return res.text()
+}).then(text => {
+    console.log('text', text)
+})
 </script>
 
 <style lang="scss" scoped>
