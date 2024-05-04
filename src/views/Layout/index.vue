@@ -27,15 +27,13 @@ const collapsed = computed(() => setting.collapsed)
 <style scoped lang="scss">
 .layout {
   position: relative;
-
   .bg-image {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    // background: url('https://xiehongchen.github.io/img/preview.jpg');
-    background: url('preview.jpg');
+    background: url('/preview.jpg');
     background-size: cover;
     background-position: center;
   }
