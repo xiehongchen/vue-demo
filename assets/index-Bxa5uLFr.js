@@ -1,0 +1,8 @@
+import{g as e,s,v as t,x as a,y as l,o,h as d,l as n,n as c,j as i,C as r,t as m,p as x,T as f,F as u,i as p,q as v,z as _,B as h,_ as y}from"./vendor-CnhQCeSG.js";import{u as I}from"./article-CB_kdb5z.js";import{_ as z}from"./index-D91dDa52.js";const E={class:"flex box"},g={class:"info flex-column flex-row-center flex-col-center"},j={class:"flex flex-col-center"},k={class:"m-5"},w={class:"m-5"},V={class:"flex flex-col-center"},b=z(e({__name:"index",setup(e){const z=I().info,b=s(),D=t((()=>b.params.name)),T=a({theme:"dark",text:"",id:"editor"});l((()=>{b.path.startsWith("/doc/")&&y((()=>import("/markdown/"+D.value+".md?raw")),__vite__mapDeps([])).then((e=>{T.text=e.default})).catch((e=>{}))}));const q=document.documentElement;return(e,s)=>(o(),d(u,null,[n("div",E,[n("div",g,[n("div",j,[c(i(r),{style:{"font-size":"15px"}}),n("div",k,m(i(z).date),1),c(i(x),{style:{"font-size":"15px"}}),n("div",w,m(i(z).updateDate),1)]),n("div",V,[c(i(f),{style:{"font-size":"15px"}}),(o(!0),d(u,null,p(i(z).tags,(e=>(o(),d("div",{class:"m-5",key:e},m(e),1)))),128)),c(i(v),{style:{"font-size":"15px"}}),(o(!0),d(u,null,p(i(z).category,(e=>(o(),d("div",{class:"m-5",key:e},m(e),1)))),128))])])]),c(i(_),{class:"preview",modelValue:i(T).text,editorId:i(T).id},null,8,["modelValue","editorId"]),c(i(h),{class:"catelog",editorId:i(T).id,scrollElement:i(q),theme:i(T).theme},null,8,["editorId","scrollElement","theme"])],64))}}),[["__scopeId","data-v-037b32d9"]]);export{b as default};
+function __vite__mapDeps(indexes) {
+  if (!__vite__mapDeps.viteFileDeps) {
+    __vite__mapDeps.viteFileDeps = []
+  }
+  return indexes.map((i) => __vite__mapDeps.viteFileDeps[i])
+}
+//# sourceMappingURL=index-Bxa5uLFr.js.map
