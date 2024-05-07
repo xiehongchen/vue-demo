@@ -66,7 +66,7 @@ watchEffect(() => {
     //     console.log('error', error)
     //   });
     // 前缀
-    let prefix = "/markdown/";
+    let prefix = "/data/";
     if (process.env.NODE_ENV === "production") {
       prefix = "/vue-demo" + prefix;
     }

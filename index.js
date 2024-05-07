@@ -1,17 +1,46 @@
 const fs = require('fs');
 const path = require('path');
-
+let fileInfo = [];
 // 读取目录下的所有文件
 function readDirectory(directoryPath, callback) {
   fs.readdir(directoryPath, (err, files) => {
+    console.log('files', files)
     if (err) {
       callback(err);
       return;
     }
+     // 定义处理文件的函数
+     function processFile(filePath, fileName, stats) {
+      fs.readFile(filePath, 'utf8', (err, content) => {
+        if (err) {
+          return callback(err);
+        }
 
-    let fileContents = ''; // 用于存储文件内容
-    let fileInfo = []; // 用于存储文件信息的数组
+        const title = fileName;
+        const date = formatTime(stats.birthtime);
+        const updateDate = formatTime(stats.mtime);
+        let tags = extractTags(content);
+        tags = tags ? tags.substring(1, tags.length - 1).split(',').map(item => item.trim()) : [];
+        const summary = extractSummary(content);
+        let category = extractCategory(content);
+        category = category ? category.substring(1, category.length - 1).split(',').map(item => item.trim()) : [];
+        const image = extractImage(content) || 'https://xiehongchen.github.io/img/preview.jpg';
+        const fileContents = extractContent(content);
 
+        // 将提取的数据添加到数组中
+        fileInfo.push({
+          title,
+          date,
+          updateDate,
+          tags,
+          summary,
+          category,
+          image,
+        });
+        const name = fileName + '.js'
+        writeToFile(fileContents, 'public/data', name, callback);
+      });
+    }
     // 遍历目录下的所有文件和子目录
     files.forEach(file => {
       const filePath = path.join(directoryPath, file);
@@ -22,41 +51,8 @@ function readDirectory(directoryPath, callback) {
         }
         // 如果是文件，则读取文件内容
         if (stats.isFile() && path.extname(filePath) === '.md') {
-          const fileName = path.basename(filePath, path.extname(filePath)) + '.js'
-          fs.readFile(filePath, 'utf8', (err, content) => {
-            if (err) {
-              callback(err);
-              return;
-            }
-            // 从文件内容中提取标题和时间
-            const title = extractTitle(content);
-            const date = extractDate(content);
-            const updateDate = extractUpdateDate(content);
-            let tags = extractTags(content)
-            tags = tags ? tags.substring(1, tags.length - 1).split(',').map(item => item.trim()) : []
-            const summary = extractSummary(content);
-            let category = extractCategory(content);
-            category = category ? category.substring(1, category.length - 1).split(',').map(item => item.trim()) : []
-            const image = extractImage(content);
-            const str = extractContent(content);
-            fileContents = str
-            // 将提取的数据添加到数组中
-            fileInfo.push({
-              title,
-              date,
-              updateDate,
-              tags,
-              summary,
-              category,
-              image,
-            });
-            // 检查是否所有文件都已读取完成
-            if (fileInfo.length === files.length) {
-              // 所有文件已读取完成，将文件内容写入到 JSON 文件中
-              writeToFile(fileInfo, 'src/views/home', 'data.json', callback);
-              writeToFile(fileContents, 'public/markdown', fileName, callback);
-            }
-          });
+          const fileName = path.basename(filePath, path.extname(filePath))
+          processFile(filePath, fileName, stats)
         }
         // 如果是目录，则递归读取子目录
         else if (stats.isDirectory()) {
@@ -66,6 +62,8 @@ function readDirectory(directoryPath, callback) {
     });
   });
 }
+
+
 
 // 从文件内容中提取标题
 function extractTitle(content) {
@@ -115,7 +113,6 @@ function extractContent(content) {
 
 // 将文件内容写入到 JSON 文件中
 function writeToFile(file, pathName, fileName, callback) {
-  console.log('file', file, pathName, fileName)
   let content = file
   if (path.extname(fileName) !== '.js') {
     content = JSON.stringify(file, null, 2);
@@ -130,7 +127,7 @@ function writeToFile(file, pathName, fileName, callback) {
       return;
     }
     // 成功写入 JSON 文件
-    console.log(`File written to ${outputPath}`);
+    // console.log(`File written to ${outputPath}`);
     callback(null);
   });
 }
@@ -141,5 +138,15 @@ readDirectory('public/markdown', (err) => {
     console.error('Error:', err);
     return;
   }
-  console.log('All files written to output.json');
 });
+
+function formatTime (time) {
+  const date = new Date(time)
+  const y = date.getFullYear().toString() // 年
+  const m = (date.getMonth() + 1).toString() // 月
+  const d = date.getDate().toString() // 日
+  const h = date.getHours().toString() // 时
+  const mi =  date.getMinutes().toString() // 分
+  const s = date.getSeconds().toString() // 秒
+  return y + '-' + m + '-' + d + ' ' + h + ':' + mi + ':' + s
+}
