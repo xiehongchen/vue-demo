@@ -37,6 +37,7 @@ const goRouter = (value: any) => {
   .item {
     padding: 0 20px;
     cursor: pointer;
+    color: #FFF;
   }
 
   .active {

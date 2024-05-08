@@ -155,7 +155,12 @@ function writeToFile(file, pathName, fileName) {
 // 读取目录下的所有 Markdown 文件并保存为 JSON 文件
 readDirectory("public/markdown")
   .then((res) => {
-    writeToFile(fileInfo, 'src/views/home', 'data.json').then(data => {
+    const list = fileInfo.sort((a, b) => {
+      const timestampA = new Date(a.updateDate).getTime();
+      const timestampB = new Date(b.updateDate).getTime();
+      return timestampB - timestampA
+    })
+    writeToFile(list, 'src/views', 'data.json').then(data => {
       console.log('data', data)
     }).catch(err => {
       console.log('err', err)

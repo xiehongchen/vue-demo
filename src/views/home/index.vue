@@ -57,7 +57,7 @@
 </template>
 
 <script setup lang="ts">
-import data from './data.json'
+import data from '../data.json'
 import { CalendarFilled, TagFilled, AppstoreFilled, EditFilled } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router';
 import { useArticle } from '@/store/article'

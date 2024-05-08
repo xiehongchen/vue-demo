@@ -1,3 +1,8 @@
+---
+tags: [JavaScript]
+summary: 记录一些学习过程中的js相关内容
+category: [前端, 笔记]
+---
 # js执行过程
 
 JavaScript代码的执行过程可以分为三个阶段：解析（Parsing）、编译（Compilation）和执行（Execution）
