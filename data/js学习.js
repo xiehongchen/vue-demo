@@ -1,3 +1,4 @@
+
 # js执行过程
 
 JavaScript代码的执行过程可以分为三个阶段：解析（Parsing）、编译（Compilation）和执行（Execution）
@@ -1182,7 +1183,8 @@ function myReduce(arr, callback, initialValue) {
 
 在代码执行过程中，回到一些无法立即处理的任务，比如：
 
-- 计时完后需要执行的任务 - `XHR`、`Fetch`
+- 计时完后需要执行的任务 ---- `setTimeout`、`setInterval`
+- 网络通信后需要执行的任务 ---- `XHR`、`Fetch`
 - 用户操作后需要执行的任务 ---- `addEventListener`
 
 如果让渲染主线程等待这些任务的时机到达，就会导致主线程长期处于【阻塞】的状态，从而导致浏览器【卡死】

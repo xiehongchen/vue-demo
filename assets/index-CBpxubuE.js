@@ -1,0 +1,2 @@
+import{d as a}from"./data-D2cgg-uP.js";import{g as e,v as t,x as s,o,c as r,k as n,y as c,r as d}from"./vendor-Cbw-dJ1o.js";import{_ as i}from"./index-DijUIAVF.js";const l=i(e({__name:"index",setup(e){const i=new Set(...a.map((a=>a.category))),l=(Array.from(i,(a=>({title:a,data:[]}))),t(["1"]));return s(l,(a=>{})),(a,e)=>{const t=d("a-collapse");return o(),r(t,{activeKey:n(l),"onUpdate:activeKey":e[0]||(e[0]=a=>c(l)?l.value=a:null)},null,8,["activeKey"])}}}),[["__scopeId","data-v-a5ec2906"]]);export{l as default};
+//# sourceMappingURL=index-CBpxubuE.js.map
