@@ -1,3 +1,4 @@
+
 # 为什么要使用`ref()`函数来声明响应式状态
 
 > **[为什么要使用ref ?](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#why-refs)**
@@ -30,7 +31,7 @@
 # computed和watch、watchEffect
 
 | 对比依据              | computed | watch            | watchEffect |
-| --------------- | -------- | ---------------- | ----------- |
+| --------------------- | -------- | ---------------- | ----------- |
 | 是否自动收集依赖（1） | 自动     | 需要指定依赖对象 | 自动        |
 | 有无返回值            | 有       | 无               | 有          |
 | 是否可以赋值          | 可以     | 不能             | 不能        |

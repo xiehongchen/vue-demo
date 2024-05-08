@@ -1,3 +1,8 @@
+---
+tags: [Vue]
+summary: 记录一些学习过程中的vue相关内容
+category: [前端, 笔记]
+---
 # 为什么要使用`ref()`函数来声明响应式状态
 
 > **[为什么要使用ref ?](https://cn.vuejs.org/guide/essentials/reactivity-fundamentals.html#why-refs)**
