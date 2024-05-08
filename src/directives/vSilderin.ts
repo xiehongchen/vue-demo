@@ -8,6 +8,7 @@ const ob = new IntersectionObserver((entries) => {
       // 出现在视口
       const animate = map.get(entry.target)
       animate && animate.play()
+      // 已经显示过的不再监听
       ob.unobserve(entry.target)
     }
   }
