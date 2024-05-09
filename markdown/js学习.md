@@ -1,7 +1,7 @@
 ---
 tags: [JavaScript]
 summary: 记录一些学习过程中的js相关内容
-category: [前端, 笔记]
+category: [前端]
 ---
 # js执行过程
 

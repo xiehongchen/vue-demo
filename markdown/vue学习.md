@@ -1,7 +1,7 @@
 ---
 tags: [Vue]
 summary: 记录一些学习过程中的vue相关内容
-category: [前端, 笔记]
+category: [前端]
 ---
 # 为什么要使用`ref()`函数来声明响应式状态
 

@@ -1,3 +1,8 @@
+---
+tags: [TypeScript]
+summary: TypeScript学习笔记
+category: [前端]
+---
 ## 基本数据类型
 
 ### 类型声明

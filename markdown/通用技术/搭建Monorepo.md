@@ -1,3 +1,8 @@
+---
+tags: [Monorepo]
+summary: 关于Monorepo
+category: [前端]
+---
 copy from [UU跑腿·技术团队](https://tech.uupt.com/?p=1185)
 
 ## **什么是Monorepo? 何时需要它？**
