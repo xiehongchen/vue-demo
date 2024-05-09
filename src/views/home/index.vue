@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-silder-in v-for="item, index in data" :key="item.title" class="item flex" @click="goDoc(item)">
+    <div v-silder-in v-for="item, index in list" :key="item.title" class="item flex" @click="goDoc(item)">
       <template v-if="index % 2">
         <div class="img">
           <img :src="item.image" style="width: 100%; height: 100%" alt="" />
@@ -57,14 +57,13 @@
 </template>
 
 <script setup lang="ts">
-import data from '../data.json'
+import { list } from '../data.ts'
 import { CalendarFilled, TagFilled, AppstoreFilled, EditFilled } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router';
 import { useArticle } from '@/store/article'
 const article = useArticle()
 onMounted(() => {
-  console.log('data', data)
-  article.articleNum = data.length
+  article.articleNum = list.length
 })
 const router = useRouter()
 const goDoc = (item: { title: string }) => {

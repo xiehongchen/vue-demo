@@ -1,3 +1,8 @@
+---
+tags: [时间处理, Date]
+summary: Date对象
+category: [前端]
+---
 # 关于时间的处理&Date对象
 
 ## 创建Date对象

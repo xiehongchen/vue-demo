@@ -46,14 +46,21 @@ export const menuRoutes: RouteRecordRaw[] = [
     path: '/about',
     name: 'about',
     component: () => import('@/views/about/index.vue'),
-  },
+  }
+]
+
+export const ohterRoutes: RouteRecordRaw[] = [
   {
     path: '/doc/:name',
     name: 'doc',
     component: () => import('@/views/article/index.vue'),
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search/index.vue'),
   }
 ]
-
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -61,6 +68,7 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/views/Layout/index.vue'),
     children: [
       ...menuRoutes,
+      ...ohterRoutes
     ],
   },
 ]

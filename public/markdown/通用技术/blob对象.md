@@ -1,3 +1,8 @@
+---
+tags: [blob]
+summary: 关于blob对象及其延伸的作用
+category: [前端]
+---
 # Blob对象
 
 Blob对象表示一个不可变、原始数据的类文件对象。Blob表示的不一定是JavaScript原生格式的数据。File接口基于Blob，继承了blob的功能并将其扩展使其支持用户系统上的文件。

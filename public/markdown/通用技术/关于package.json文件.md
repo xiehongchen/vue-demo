@@ -1,3 +1,8 @@
+---
+tags: [package.json]
+summary: 关于package.json文件的解读
+category: [前端]
+---
 # package.json
 
 ## `name`
