@@ -90,7 +90,7 @@ function processFile(filePath, fileName, stats) {
             .split(",")
             .map((item) => item.trim())
         : [];
-      const summary = extractSummary(content) || ''
+      const summary = extractSummary(content).trim().replace(/^'|'$/g, '') || ''
       let category = extractCategory(content);
       category = category
         ? category

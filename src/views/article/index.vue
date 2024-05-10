@@ -2,6 +2,9 @@
   <div class="flex box">
     <div class="info flex-column flex-row-center flex-col-center">
       <div class="flex flex-col-center">
+        {{ info.summary }}
+      </div>
+      <div class="flex flex-col-center">
         <CalendarFilled style="font-size: 15px" />
         <!-- 创建时间 -->
         <div class="m-5">{{ info.date }}</div>
