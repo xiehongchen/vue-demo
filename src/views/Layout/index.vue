@@ -2,14 +2,15 @@
 import LayoutHeader from './LayoutHeader.vue'
 import LayoutSider from './LayoutSider.vue';
 import { useSetting } from '@/store/setting'
+import { layout } from '@/enum/setting'
 const setting = useSetting()
 const collapsed = computed(() => setting.collapsed)
+const themeLayout = computed(() => setting.themeLayout)
 </script>
 
 <template>
   <a-layout class="layout">
-    <div class="bg-image">
-    </div>
+    <div v-if="themeLayout === layout.BOX" class="bg-image"></div>
     <a-layout-header class="header">
       <LayoutHeader />
     </a-layout-header>
@@ -27,6 +28,7 @@ const collapsed = computed(() => setting.collapsed)
 <style scoped lang="scss">
 .layout {
   position: relative;
+  background-color: #fafafa;
   .bg-image {
     position: absolute;
     top: 0;

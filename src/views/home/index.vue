@@ -1,81 +1,124 @@
 <template>
   <div class="container">
-    <div v-silder-in v-for="item, index in list" :key="item.title" class="item flex" @click="goDoc(item)">
-      <template v-if="index % 2">
-        <div class="img">
-          <img :src="item.image" style="width: 100%; height: 100%" alt="" />
-        </div>
-        <div class="box right">
-          <div class="title">{{ item.title }}</div>
-          <div class="desc">{{ item.summary }}</div>
-          <div class="info flex flex-col-center flex-row-right">
-            <CalendarFilled style="font-size: 15px" />
-            <!-- 创建时间 -->
-            <div class="m-5">{{ item.date }}</div>
-            <EditFilled style="font-size: 15px;margin-left: 20px;" />
-            <!-- 更新时间 -->
-            <div class="m-5">{{ item.updateDate }}</div>
+    <div
+      v-silder-in
+      v-for="(item, index) in list"
+      :key="item.title"
+      @click="goDoc(item)"
+    >
+      <template v-if="themeLayout === layout.SIMPLE">
+        <div class="flex-center">
+          <div class="simple-item flex">
+            <div class="simple-title">{{ item.title }}</div>
+            <div class="simple-date">{{ item.date }}</div>
           </div>
-          <div class="info flex flex-col-center flex-row-right">
-            <TagFilled style="font-size: 15px" />
-            <!-- 标签 -->
-            <div class="m-5" v-for="tag in item.tags" :key="tag" @click="goTag(tag)">{{ tag }}</div>
-            <AppstoreFilled style="font-size: 15px;margin-left: 20px" />
-            <!-- 分类 -->
-            <div class="m-5" v-for="cate in item.category" :key="cate" @click="goCate(cate)">{{ cate }}</div>
+        </div>
+      </template>
+      <template v-else-if="index % 2">
+        <div class="item flex">
+          <div class="img">
+            <img :src="item.image" style="width: 100%; height: 100%" alt="" />
+          </div>
+          <div class="box right">
+            <div class="title">{{ item.title }}</div>
+            <div class="desc">{{ item.summary }}</div>
+            <div class="info flex flex-col-center flex-row-right">
+              <CalendarFilled style="font-size: 15px" />
+              <!-- 创建时间 -->
+              <div class="m-5">{{ item.date }}</div>
+              <EditFilled style="font-size: 15px; margin-left: 20px" />
+              <!-- 更新时间 -->
+              <div class="m-5">{{ item.updateDate }}</div>
+            </div>
+            <div class="info flex flex-col-center flex-row-right">
+              <TagFilled style="font-size: 15px" />
+              <!-- 标签 -->
+              <div
+                class="m-5"
+                v-for="tag in item.tags"
+                :key="tag"
+                @click="goTag(tag)"
+              >
+                {{ tag }}
+              </div>
+              <AppstoreFilled style="font-size: 15px; margin-left: 20px" />
+              <!-- 分类 -->
+              <div
+                class="m-5"
+                v-for="cate in item.category"
+                :key="cate"
+                @click="goCate(cate)"
+              >
+                {{ cate }}
+              </div>
+            </div>
           </div>
         </div>
       </template>
       <template v-else>
-        <div class="box">
-          <div class="title">{{ item.title }}</div>
-          <div class="desc">{{ item.summary }}</div>
-          <div class="info flex flex-col-center flex-row-left">
-            <CalendarFilled style="font-size: 15px" />
-            <!-- 创建时间 -->
-            <div class="m-5">{{ item.date }}</div>
-            <EditFilled style="font-size: 15px;margin-left: 20px" />
-            <!-- 更新时间 -->
-            <div class="m-5">{{ item.updateDate }}</div>
+        <div class="item flex">
+          <div class="box">
+            <div class="title">{{ item.title }}</div>
+            <div class="desc">{{ item.summary }}</div>
+            <div class="info flex flex-col-center flex-row-left">
+              <CalendarFilled style="font-size: 15px" />
+              <!-- 创建时间 -->
+              <div class="m-5">{{ item.date }}</div>
+              <EditFilled style="font-size: 15px; margin-left: 20px" />
+              <!-- 更新时间 -->
+              <div class="m-5">{{ item.updateDate }}</div>
+            </div>
+            <div class="info flex flex-col-center flex-row-left">
+              <TagFilled style="font-size: 15px" />
+              <!-- 标签 -->
+              <div class="m-5" v-for="tag in item.tags" :key="tag">
+                {{ tag }}
+              </div>
+              <AppstoreFilled style="font-size: 15px; margin-left: 20px" />
+              <!-- 分类 -->
+              <div class="m-5" v-for="cate in item.category" :key="cate">
+                {{ cate }}
+              </div>
+            </div>
           </div>
-          <div class="info flex flex-col-center flex-row-left">
-            <TagFilled style="font-size: 15px" />
-            <!-- 标签 -->
-            <div class="m-5" v-for="tag in item.tags" :key="tag">{{ tag }}</div>
-            <AppstoreFilled style="font-size: 15px;margin-left: 20px;" />
-            <!-- 分类 -->
-            <div class="m-5" v-for="cate in item.category" :key="cate">{{ cate }}</div>
+          <div class="img">
+            <img :src="item.image" style="width: 100%; height: 100%" alt="" />
           </div>
-        </div>
-        <div class="img">
-          <img :src="item.image" style="width: 100%; height: 100%" alt="" />
         </div>
       </template>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
-import { list } from '../data.ts'
-import { CalendarFilled, TagFilled, AppstoreFilled, EditFilled } from '@ant-design/icons-vue'
-import { useRouter } from 'vue-router';
-import { useArticle } from '@/store/article'
-const article = useArticle()
+import { list } from "../data.ts";
+import {
+  CalendarFilled,
+  TagFilled,
+  AppstoreFilled,
+  EditFilled,
+} from "@ant-design/icons-vue";
+import { useRouter } from "vue-router";
+import { useArticle } from "@/store/article";
+import { useSetting } from "@/store/setting";
+import { layout } from "@/enum/setting";
+const setting = useSetting();
+const themeLayout = computed(() => setting.themeLayout);
+const article = useArticle();
 onMounted(() => {
-  article.articleNum = list.length
-})
-const router = useRouter()
+  article.articleNum = list.length;
+});
+const router = useRouter();
 const goDoc = (item: { title: string }) => {
-  article.info = item
-  router.push({ name: 'doc', params: { name: item.title } })
-}
+  article.info = item;
+  router.push({ name: "doc", params: { name: item.title } });
+};
 const goTag = (item: string) => {
-  router.push({ name: 'result', params: { name: item } })
-}
+  router.push({ name: "result", params: { name: item } });
+};
 const goCate = (item: string) => {
-  router.push({ name: 'result', params: { name: item } })
-}
+  router.push({ name: "result", params: { name: item } });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -87,6 +130,18 @@ const goCate = (item: string) => {
   &::-webkit-scrollbar {
     display: none;
   }
+  .simple-item {
+    font-size: 20px;
+    line-height: 40px;
+    width: 500px;
+    .simple-title {
+
+    }
+    .simple-date {
+      font-size: 14px;
+      margin-left: 20px;
+    }
+  }
 
   .item {
     width: 100%;
@@ -96,7 +151,7 @@ const goCate = (item: string) => {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: left;
     padding: 20px;
-    color: #FFF;
+    color: #fff;
 
     .img {
       height: 100%;

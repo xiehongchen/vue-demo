@@ -11,6 +11,8 @@
       </div>
     </div>
     <div class="search flex-center">
+      <a-switch v-model:checked="checked" @change="changeLayout" />
+      <a-switch v-model:checked="checkedTheme" @change="changeTheme" />
       <SearchOutlined style="font-size: 20px;" @click="goRouter({path: '/search'})" />
 
     </div>
@@ -23,6 +25,7 @@ import { menuRoutes } from '@/router/routes'
 import { navigate } from '@/utils/navigate'
 import { useRoute } from 'vue-router'
 import { useSetting } from '@/store/setting'
+import { layout, theme } from '@/enum/setting'
 const setting = useSetting()
 const route = useRoute()
 const clickCollapsed = () => {
@@ -31,7 +34,23 @@ const clickCollapsed = () => {
 const goRouter = (value: any) => {
   navigate(value.path)
 }
-
+const checked = ref<boolean>(false)
+  const checkedTheme = ref<boolean>(false)
+const changeLayout = () => {
+  if (setting.themeLayout === layout.BOX) {
+    setting.themeLayout = layout.SIMPLE
+  } else {
+    setting.themeLayout = layout.BOX
+  }
+}
+const changeTheme = () => {
+  console.log(setting.theme)
+  if (setting.theme === theme.DARK) {
+    setting.changeTheme(theme.LIGHT)
+  } else {
+    setting.changeTheme(theme.DARK)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
