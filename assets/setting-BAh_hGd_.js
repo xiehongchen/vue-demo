@@ -1,0 +1,2 @@
+import{R as e}from"./vendor-C19TPk7J.js";var t=(e=>(e.BOX="box",e.SIMPLE="simple",e))(t||{}),s=(e=>(e.DARK="dark",e.LIGHT="light",e))(s||{});const m=e("setting",{state:()=>({collapsed:!1,themeLayout:t.SIMPLE,theme:s.LIGHT}),actions:{changeTheme(e){document.documentElement.classList.remove(this.theme),this.theme=e,document.documentElement.classList.add(e)}}});export{t as l,s as t,m as u};
+//# sourceMappingURL=setting-BAh_hGd_.js.map
