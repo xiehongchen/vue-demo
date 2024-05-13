@@ -1,7 +1,7 @@
 ---
 tags: [Vue]
 summary: '学习过程中遇到的一些关于vue的问题'
-category: [前端]
+category: [前端, Vue]
 ---
 # 为什么要使用`ref()`函数来声明响应式状态
 

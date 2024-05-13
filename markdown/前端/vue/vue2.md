@@ -1,7 +1,7 @@
 ---
 tags: [Vue]
 summary: 'vue2的学习笔记'
-category: [前端]
+category: [前端, Vue]
 ---
 学习资源
 

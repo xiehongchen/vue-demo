@@ -1,7 +1,7 @@
 ---
 tags: [React]
 summary: 'react学习笔记'
-category: [前端]
+category: [前端, React]
 ---
 # React介绍
 
