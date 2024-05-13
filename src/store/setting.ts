@@ -4,7 +4,7 @@ import { layout, theme } from '@/enum/setting'
 export const useSetting = defineStore('setting', {
   state: () => ({
     collapsed: false,
-    themeLayout: layout.SIMPLE,
+    themeLayout: layout.BOX,
     theme: theme.LIGHT
   }),
   actions: {

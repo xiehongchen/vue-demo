@@ -40,3 +40,14 @@ export const tagList = data.reduce<CategoryData[]>((acc, item) => {
   });
   return acc;
 }, []);
+
+export const dateList = data.reduce<CategoryData[]>((acc, item) => {
+  const date = item.updateDate.split(' ')[0]
+  const existingCategory = acc.find(c => c.title === date);
+  if (existingCategory) {
+      existingCategory.data.push(item);
+  } else {
+      acc.push({ title: date, data: [item] });
+  }
+  return acc;
+}, []);

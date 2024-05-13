@@ -134,9 +134,6 @@ const goCate = (item: string) => {
     font-size: 20px;
     line-height: 40px;
     width: 500px;
-    .simple-title {
-
-    }
     .simple-date {
       font-size: 14px;
       margin-left: 20px;

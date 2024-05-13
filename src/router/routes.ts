@@ -19,14 +19,6 @@ export const menuRoutes: RouteRecordRaw[] = [
     }
   },
   {
-    path: '/package',
-    name: 'package',
-    component: () => import('@/views/package/index.vue'),
-    meta: {
-      title: '封装组件'
-    }
-  },
-  {
     path: '/category',
     name: 'category',
     component: () => import('@/views/category/index.vue'),
@@ -43,9 +35,20 @@ export const menuRoutes: RouteRecordRaw[] = [
     }
   },
   {
+    path: '/dates',
+    name: 'dates',
+    component: () => import('@/views/dates/index.vue'),
+    meta: {
+      title: '归档'
+    }
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/about/index.vue'),
+    meta: {
+      title: '关于'
+    }
   }
 ]
 

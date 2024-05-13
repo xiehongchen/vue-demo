@@ -1,7 +1,7 @@
 ---
 tags: [Vue]
 summary: 'vue3的学习笔记'
-category: [前端]
+category: [前端, Vue]
 ---
 # Vue3
 

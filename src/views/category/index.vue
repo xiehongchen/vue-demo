@@ -18,7 +18,7 @@ const goDoc = (item: { title: string }) => {
   router.push({ name: 'doc', params: { name: item.title } })
 }
 // const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-const activeKey = ref(['1']);
+const activeKey = ref([]);
 </script>
 
 <style lang="scss" scoped>

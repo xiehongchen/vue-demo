@@ -1,7 +1,7 @@
 ---
 tags: [JavaScript]
 summary: '学习过程中遇到的一些关于js的问题'
-category: [前端]
+category: [前端, JavaScript]
 ---
 # js执行过程
 
