@@ -1,0 +1,2 @@
+import{V as e}from"./vendor-BwPNZBZs.js";var t=(e=>(e.BOX="box",e.SIMPLE="simple",e))(t||{}),s=(e=>(e.DARK="dark",e.LIGHT="light",e))(s||{}),a=(e=>(e.LEFT="left",e.RIGHT="right",e))(a||{});const m=e("setting",{state:()=>({collapsed:!0,themeLayout:t.BOX,theme:s.LIGHT,articleLayout:a.RIGHT}),actions:{changeTheme(e){document.documentElement.classList.remove(this.theme),this.theme=e,document.documentElement.classList.add(e)}}});export{a,t as l,s as t,m as u};
+//# sourceMappingURL=setting-SEC1BQgF.js.map
