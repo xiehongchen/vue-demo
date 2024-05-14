@@ -27,6 +27,7 @@
   <MdPreview class="preview" :modelValue="state.text" :editorId="state.id" />
   <MdCatalog
     class="catelog"
+    :class="layout == 'left' ? 'left' : 'right'"
     :editorId="state.id"
     :scrollElement="scrollElement"
     :theme="state.theme"
@@ -44,9 +45,12 @@ import { MdPreview, MdCatalog } from "md-editor-v3";
 import "md-editor-v3/lib/preview.css";
 import { useRoute } from "vue-router";
 import { useArticle } from "@/store/article";
+import { useSetting } from '@/store/setting'
 const article = useArticle();
+const setting = useSetting()
 console.log("article", article.info);
 const info: any = article.info;
+const layout = computed(() =>  setting.articleLayout)
 const route = useRoute();
 const currentName: ComputedRef = computed(() => {
   return route.params.name;
@@ -60,15 +64,6 @@ const state = reactive({
 });
 watchEffect(() => {
   if (route.path.startsWith("/doc/")) {
-    // import(/* @vite-ignore */ "/markdown/" + currentName.value + ".md?raw")
-    //   .then((e) => {
-    //     console.log('e', e)
-    //     state.text = e.default;
-    //   })
-    //   .catch((error) => {
-    //     console.log('error', error)
-    //   });
-    // 前缀
     let prefix = "/data/";
     if (process.env.NODE_ENV === "production") {
       prefix = "/vue-demo" + prefix;
@@ -108,7 +103,7 @@ const scrollElement = document.documentElement;
 :deep(.md-editor-preview-wrapper) {
   display: flex;
   justify-content: center;
-  width: calc(100% - 200px);
+  // width: calc(100% - 200px);
 
   .md-editor-preview {
     background-color: #fff;
@@ -125,11 +120,16 @@ const scrollElement = document.documentElement;
 .catelog {
   position: fixed;
   background-color: #fff;
-  right: 0;
   top: 100px;
   width: 200px;
   padding: 20px;
   height: 80%;
   overflow: auto;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
 }
 </style>

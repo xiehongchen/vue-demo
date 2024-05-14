@@ -11,21 +11,37 @@
       </div>
     </div>
     <div class="search flex-center">
-      <a-switch v-model:checked="checked" @change="changeLayout" />
-      <a-switch v-model:checked="checkedTheme" @change="changeTheme" />
-      <SearchOutlined style="font-size: 20px;" @click="goRouter({path: '/search'})" />
+      <SearchOutlined style="font-size: 20px;margin-right: 20px;" @click="goRouter({ path: '/search' })" />
+      <SettingOutlined style="font-size: 20px;" @click="showDrawer" />
 
     </div>
+    <a-drawer v-model:open="open" class="custom-class" root-class-name="root-class-name" :root-style="{ color: 'blue' }"
+ title="设置" placement="right" @after-open-change="afterOpenChange">
+      <div style="margin: 5px 0;">
+        布局切换
+        <a-switch v-model:checked="checked" checked-children="简洁" un-checked-children="盒子"  @change="changeLayout" />
+      </div>
+      <div style="margin: 5px 0;">
+        主题样式
+        <a-switch v-model:checked="checkedTheme" @change="changeTheme" />
+      </div>
+      <div style="margin: 5px 0;">
+        文章目录
+        <a-switch v-model:checked="checkedArticle" checked-children="左边" 
+          un-checked-children="右边" @change="changeArticle" />
+      </div>
+     
+    </a-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined } from '@ant-design/icons-vue'
+import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, SettingOutlined } from '@ant-design/icons-vue'
 import { menuRoutes } from '@/router/routes'
 import { navigate } from '@/utils/navigate'
 import { useRoute } from 'vue-router'
 import { useSetting } from '@/store/setting'
-import { layout, theme } from '@/enum/setting'
+import { layout, theme, articleLayout } from '@/enum/setting'
 const setting = useSetting()
 const route = useRoute()
 const clickCollapsed = () => {
@@ -35,7 +51,8 @@ const goRouter = (value: any) => {
   navigate(value.path)
 }
 const checked = ref<boolean>(false)
-  const checkedTheme = ref<boolean>(false)
+const checkedTheme = ref<boolean>(false)
+const checkedArticle = ref<boolean>(false)
 const changeLayout = () => {
   if (setting.themeLayout === layout.BOX) {
     setting.themeLayout = layout.SIMPLE
@@ -51,6 +68,22 @@ const changeTheme = () => {
     setting.changeTheme(theme.DARK)
   }
 }
+const changeArticle = () => {
+  if (setting.articleLayout === articleLayout.LEFT) {
+    setting.articleLayout = articleLayout.RIGHT
+  } else {
+    setting.articleLayout = articleLayout.LEFT
+  }
+}
+const open = ref<boolean>(false);
+
+const afterOpenChange = (bool: boolean) => {
+  console.log('open', bool);
+};
+
+const showDrawer = () => {
+  open.value = true;
+};
 </script>
 
 <style lang="scss" scoped>

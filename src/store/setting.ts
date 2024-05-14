@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
-import { layout, theme } from '@/enum/setting'
+import { layout, theme, articleLayout } from '@/enum/setting'
 
 export const useSetting = defineStore('setting', {
   state: () => ({
-    collapsed: false,
+    collapsed: true,
     themeLayout: layout.BOX,
-    theme: theme.LIGHT
+    theme: theme.LIGHT,
+    articleLayout: articleLayout.RIGHT
   }),
   actions: {
     // 先删除之前的主题，再赋值新主题

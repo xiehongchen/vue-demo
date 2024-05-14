@@ -1,102 +1,101 @@
 //引入清除默认样式
-@import './reset.scss';
-
+@import "./reset.scss";
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 .flex {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .flex-center {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .flex-column-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .flex-wrap {
-    flex-wrap: wrap;
-  }
-  
-  .flex-nowrap {
-    flex-wrap: nowrap;
-  }
-  
-  .flex-col-center {
-    align-items: center;
-  }
-  
-  .flex-col-stretch {
-    align-items: stretch;
-  }
-  
-  .flex-col-top {
-    align-items: flex-start;
-  }
-  
-  .flex-col-bottom {
-    align-items: flex-end;
-  }
-  
-  .flex-row-center {
-    justify-content: center;
-  }
-  
-  .flex-row-left {
-    justify-content: flex-start;
-  }
-  
-  .flex-row-right {
-    justify-content: flex-end;
-  }
-  
-  .flex-row-between {
-    justify-content: space-between;
-  }
-  
-  .flex-row-around {
-    justify-content: space-around;
-  }
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.flex-col-center {
+  align-items: center;
+}
+
+.flex-col-stretch {
+  align-items: stretch;
+}
+
+.flex-col-top {
+  align-items: flex-start;
+}
+
+.flex-col-bottom {
+  align-items: flex-end;
+}
+
+.flex-row-center {
+  justify-content: center;
+}
+
+.flex-row-left {
+  justify-content: flex-start;
+}
+
+.flex-row-right {
+  justify-content: flex-end;
+}
+
+.flex-row-between {
+  justify-content: space-between;
+}
+
+.flex-row-around {
+  justify-content: space-around;
+}
 //滚动条外观设置
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--login-setting-tag-bg);
+  background: var(--login-setting-tag-bg);
 }
 
-::-webkit-scrollbar-thumb{
-    width: 10px;
-    background-color: var(--login-button);
-    border-radius: 10px;
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: var(--login-button);
+  border-radius: 10px;
 }
 :root {
   --theme-color: #333;
   --theme-background: #eee;
 }
 /* 更改dark类名下变量的取值 */
-.dark{
+.dark {
   --theme-color: #eee;
   --theme-background: #333;
 }
 /* 更改pink类名下变量的取值 */
-.pink{
+.pink {
   --theme-color: #fff;
   --theme-background: pink;
 }
