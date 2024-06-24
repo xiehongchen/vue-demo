@@ -1,29 +1,9 @@
-<script setup lang="ts">
-import LayoutHeader from './LayoutHeader.vue'
-import LayoutSider from './LayoutSider.vue';
-import { useSetting } from '@/store/setting'
-import { layout } from '@/enum/setting'
-const setting = useSetting()
-const collapsed = computed(() => setting.collapsed)
-const themeLayout = computed(() => setting.themeLayout)
-</script>
-
 <template>
-  <a-layout class="layout">
-    <div v-if="themeLayout === layout.BOX" class="bg-image"></div>
-    <a-layout-header class="header">
-      <LayoutHeader />
-    </a-layout-header>
-    <a-layout>
-      <a-layout-sider width="300" v-model:collapsed="collapsed" :trigger="null" collapsible :collapsedWidth="0" class="sider flex-center">
-        <LayoutSider />
-      </a-layout-sider>
-      <a-layout-content class="content">
-        <router-view></router-view>
-      </a-layout-content>
-    </a-layout>
-  </a-layout>
+  <div>123</div>
 </template>
+
+<script setup lang="ts">
+</script>
 
 <style scoped lang="scss">
 .layout {
