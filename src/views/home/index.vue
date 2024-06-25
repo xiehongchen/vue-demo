@@ -33,8 +33,10 @@
         @change="handleChange"
       >
         <template #render="item">
-          <a-image :width="40" :height="40" :src="item.preview"></a-image>
-          <span class="custom-item" style="color: red">{{ item.name }}</span>
+          <div style="text-align: left">
+            <a-image :width="40" :height="40" :src="item.preview"></a-image>
+            <span class="custom-item" style="color: red">{{ item.name }}</span>
+          </div>
         </template>
       </a-transfer>
     </div>
@@ -63,13 +65,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue';
+import { ref } from 'vue';
 
 // 上传区域
 import { InboxOutlined } from '@ant-design/icons-vue';
-import { message } from 'ant-design-vue';
-import type { UploadChangeParam } from 'ant-design-vue';
-import { UploadOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
 const fileList = ref<UploadProps['fileList']>([]);
@@ -82,8 +81,11 @@ const handleRemove: UploadProps['onRemove'] = file => {
 };
 
 const beforeUpload: UploadProps['beforeUpload'] = async (file: any) => {
+  if (!file.url && !file.preview) {
+    file.preview = (await getBase64(file)) as string;
+  }
+  file.key = file.uid
   fileList.value = [...(fileList.value || []), file];
-  console.log('file', file, fileList.value)
   return false;
 };
 const previewVisible = ref(false);
@@ -97,7 +99,6 @@ const handlePreview = async (file: any) => {
   previewImage.value = file.url || file.preview;
   previewVisible.value = true;
   previewTitle.value = file.name || file.url.substring(file.url.lastIndexOf('/') + 1);
-  console.log('file', file, fileList.value)
 };
 const handleCancel = () => {
   previewVisible.value = false;
@@ -114,53 +115,71 @@ function getBase64(file: File) {
 }
 
 // 筛选区域
-interface MockData {
-  key: string;
-  title: string;
-  description: string;
-}
-const mockData = ref<any[]>([])
-for (let i = 0; i < 20; i++) {
-  mockData.value.push({
-    key: i.toString(),
-    title: `content${i + 1}`,
-    description: `description of content${i + 1}`
-  });
-}
-
 const targetKeys = ref<string[]>();
 
 
 const handleChange = (nextTargetKeys: string[], direction: string, moveKeys: string[]) => {
-  console.log('targetKeys: ', nextTargetKeys);
-  console.log('direction: ', direction);
-  console.log('moveKeys: ', moveKeys);
-  if (direction === 'right') {
-
+  console.log('nextTargetKeys', nextTargetKeys, direction, moveKeys)
+  const list = fileList.value?.filter((item: any )=> nextTargetKeys.includes(item.key)) as any[]
+  console.log('list', list)
+  let hasImage = imgList.value.filter(item => item.image)
+  console.log('hasImage', hasImage)
+  if (hasImage.length > 0) {
+    let listKeys = list.map(item => item.key)
+    imgList.value = imgList.value.map(imgItem => {
+      // 如果该key有值，且list不存在该key，image置空
+      if (imgItem.key && !listKeys.includes(imgItem.key)) {
+        return { ...imgItem, image: '', key: '' }
+      }
+      if (listKeys.includes(imgItem.key)) {
+        // 过滤掉已经存在的key
+        listKeys = listKeys.filter(key => key !== imgItem.key)
+      }
+      console.log('listKeys', listKeys)
+      return imgItem
+    })
+    console.log('listKeys', listKeys)
+    // 如果存在没有的key，就按顺序加上
+    if (listKeys.length) {
+      for (let i = 0; i < listKeys.length; i++) {
+        const index = imgList.value.findIndex(item => item.key === '')
+        const item = list.find(item => item.key == listKeys[i])
+        console.log('index', index)
+        imgList.value[index].image = item.preview
+        imgList.value[index].key = item.key
+      }
+    }
+  } else {
+    for (let i = 0; i < list!.length; i++) {
+      imgList.value[i].image = list[i].preview
+      imgList.value[i].key = list[i].key
+    }
   }
+  hasImage  = imgList.value.filter(item => item.image)
+  console.log('hasImage', hasImage)
 };
 // 展示区域
 let imgList = ref([
-  { index: 1, image: '' },
-  { index: 2, image: '' },
-  { index: 3, image: '' },
-  { index: 4, image: '' },
-  { index: 5, image: '' },
-  { index: 6, image: '' },
-  { index: 7, image: '' },
-  { index: 8, image: '' },
-  { index: 9, image: '' },
-  { index: 10, image: '' },
-  { index: 11, image: '' },
-  { index: 12, image: '' },
-  { index: 13, image: '' },
-  { index: 14, image: '' },
-  { index: 15, image: '' },
-  { index: 16, image: '' },
-  { index: 17, image: '' },
-  { index: 18, image: '' },
-  { index: 19, image: '' },
-  { index: 20, image: '' }
+  { index: 1, image: '', key: '' },
+  { index: 2, image: '', key: '' },
+  { index: 3, image: '', key: '' },
+  { index: 4, image: '', key: '' },
+  { index: 5, image: '', key: '' },
+  { index: 6, image: '', key: '' },
+  { index: 7, image: '', key: '' },
+  { index: 8, image: '', key: '' },
+  { index: 9, image: '', key: '' },
+  { index: 10, image: '', key: '' },
+  { index: 11, image: '', key: '' },
+  { index: 12, image: '', key: '' },
+  { index: 13, image: '', key: '' },
+  { index: 14, image: '', key: '' },
+  { index: 15, image: '', key: '' },
+  { index: 16, image: '', key: '' },
+  { index: 17, image: '', key: '' },
+  { index: 18, image: '', key: '' },
+  { index: 19, image: '', key: '' },
+  { index: 20, image: '', key: '' }
 ]);
 
 let dragItem = ref(null);
@@ -183,15 +202,19 @@ function drop(item: any, event: any) {
   console.log('data', data, item);
   const index1 = imgList.value.findIndex((i) => i.index === item.index);
   const index2 = imgList.value.findIndex((i) => i.index === data.index);
+  console.log('index', index1, index2)
   if (index1 > -1 && index2 > -1) {
     // 交换两个图片的 index 属性
-    const tempImage = imgList.value[index1].image;
+    const temp = { ...imgList.value[index1] }
     imgList.value[index1].image = imgList.value[index2].image;
-    imgList.value[index2].image = tempImage;
+    imgList.value[index1].key = imgList.value[index2].key;
+    imgList.value[index2].image = temp.image;
+    imgList.value[index2].key = temp.key;
+    console.log('imgList', imgList.value, temp)
   }
 }
 
-function dragEnd(event: any) {
+function dragEnd() {
   dragItem.value = null;
 }
 </script>
@@ -241,6 +264,7 @@ function dragEnd(event: any) {
   }
   .select-box {
     flex: 1;
+    padding: 0 50px;
   }
 }
 </style>
